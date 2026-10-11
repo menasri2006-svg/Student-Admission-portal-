@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-# Student Admission Portal
 
 A secure, multi-tier web application for student admissions, registration, document management, and administrative records. Built with **HTML5/CSS3/JavaScript** (CO3), **PHP 8 & MySQL** (CO4), and **Jakarta Servlet/JSP on Apache Tomcat** (CO5).
 
@@ -195,7 +193,5 @@ StudentAdmissionPortal/
 - **Author:** BE Computer Science Student
 - **Course:** Web Technology Laboratory Assignment
 - **Outcomes Covered:** CO3 (HTML/CSS/JS Form), CO4 (PHP/MySQL Admin CRUD), CO5 (Java Servlet/JSP/JDBC Portal)
-=======
-# Student-Admission-portal-
-A responsive Student Admission Portal developed using HTML5, CSS3, JavaScript, PHP, and Servlet technologies to demonstrate student admission forms, web development concepts, and database integration.
->>>>>>> 73bcaa9e129b961626d4d72ff9b1a7b353f30ddf
+
+
