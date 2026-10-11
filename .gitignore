@@ -1,0 +1,33 @@
+# Antigravity / IDE settings
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.system_generated/
+
+# OS specific
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Build artifacts
+java-portal/target/
+java-portal/src/main/webapp/WEB-INF/classes/
+*.class
+*.war
+*.jar
+
+# Logs & temporary files
+*.log
+tmp/
+temp/
+scratch/
+
+# User uploads (keep directory structure and sample seed images, ignore runtime uploads)
+php-admin/uploads/documents/doc_*_uploaded.pdf
+php-admin/uploads/profile_images/std_*.jpg
+php-admin/uploads/profile_images/std_*.png
+php-admin/uploads/profile_images/std_*.webp
+!php-admin/uploads/.htaccess
+!php-admin/uploads/profile_images/sample_*.jpg
+!php-admin/uploads/documents/doc_*_sample.pdf

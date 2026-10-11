@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Online Student Admission Portal - Register for academic programs with secure document upload and validation.">
+    <title>Student Admission Registration Portal</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Main Navigation Header -->
+    <header class="portal-header">
+        <nav class="portal-nav" aria-label="Main Navigation">
+            <a href="index.html" class="portal-brand">
+                <div class="portal-brand-logo">A</div>
+                <div class="portal-title-group">
+                    <h1>Student Admission Portal</h1>
+                    <p>Department of Academic Registrations</p>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Registration</a>
+                <a href="../php-admin/login.php" class="nav-link btn-admin">Admin Portal</a>
+                <a href="http://localhost:8080/student-portal/login" class="nav-link" target="_blank" rel="noopener">Java Portal</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="portal-main">
+        <div class="registration-card">
+            
+            <!-- Card Header -->
+            <div class="card-header">
+                <h2>New Student Registration</h2>
+                <p>Complete the admission form with your personal details and academic credentials.</p>
+            </div>
+
+            <div class="form-body">
+                
+                <!-- Live Feedback Banner -->
+                <div id="formAlert" class="alert-banner" role="alert" aria-live="polite"></div>
+
+                <!-- Registration Form Container -->
+                <div id="formContainer">
+                    <form id="registrationForm" method="POST" action="register.php" enctype="multipart/form-data" novalidate>
+                        
+                        <div class="form-grid">
+                            
+                            <!-- 1. Student Full Name -->
+                            <div class="form-group">
+                                <label for="studentName" class="form-label">
+                                    Full Name <span class="required-badge">*</span>
+                                </label>
+                                <input type="text" id="studentName" name="name" class="form-control" 
+                                       placeholder="e.g. Aarav Sharma" required autocomplete="name">
+                                <span class="field-error" id="nameError"></span>
+                            </div>
+
+                            <!-- 2. Roll Number / Student ID -->
+                            <div class="form-group">
+                                <label for="rollNumber" class="form-label">
+                                    Roll Number / Application ID <span class="required-badge">*</span>
+                                </label>
+                                <input type="text" id="rollNumber" name="roll_number" class="form-control" 
+                                       placeholder="e.g. CS2026-105" required autocomplete="off">
+                                <span class="field-error" id="rollError"></span>
+                            </div>
+
+                            <!-- 3. Email Address -->
+                            <div class="form-group">
+                                <label for="email" class="form-label">
+                                    Email Address <span class="required-badge">*</span>
+                                </label>
+                                <input type="email" id="email" name="email" class="form-control" 
+                                       placeholder="e.g. student@example.edu" required autocomplete="email">
+                                <span class="field-error" id="emailError"></span>
+                            </div>
+
+                            <!-- 4. Course Program Selection -->
+                            <div class="form-group">
+                                <label for="course" class="form-label">
+                                    Admitted Program / Course <span class="required-badge">*</span>
+                                </label>
+                                <select id="course" name="course" class="form-control" required>
+                                    <option value="" disabled selected>-- Select Your Degree Program --</option>
+                                    <option value="B.Tech Computer Science">B.Tech Computer Science and Engineering</option>
+                                    <option value="B.Tech Information Technology">B.Tech Information Technology</option>
+                                    <option value="B.Tech Electronics & Comm">B.Tech Electronics & Communication</option>
+                                    <option value="B.Tech Artificial Intelligence">B.Tech AI & Data Science</option>
+                                    <option value="M.Tech Software Engineering">M.Tech Software Engineering</option>
+                                    <option value="MCA Computer Applications">MCA - Master of Computer Applications</option>
+                                </select>
+                                <span class="field-error" id="courseError"></span>
+                            </div>
+
+                            <!-- 5. Password -->
+                            <div class="form-group">
+                                <label for="password" class="form-label">
+                                    Account Password <span class="required-badge">*</span>
+                                </label>
+                                <input type="password" id="password" name="password" class="form-control" 
+                                       placeholder="Minimum 8 characters" required autocomplete="new-password">
+                                <span class="field-error" id="passwordError"></span>
+
+                                <!-- Password Strength Meter -->
+                                <div class="password-meter-wrap">
+                                    <div class="strength-bar-track">
+                                        <div id="strengthFill" class="strength-bar-fill"></div>
+                                    </div>
+                                    <span id="strengthLabel" class="strength-label">Password strength: None</span>
+                                    
+                                    <div class="password-requirements">
+                                        <div class="req-item unmet" id="reqLength"><span class="req-icon">○</span> 8+ Characters</div>
+                                        <div class="req-item unmet" id="reqUpper"><span class="req-icon">○</span> Uppercase letter</div>
+                                        <div class="req-item unmet" id="reqLower"><span class="req-icon">○</span> Lowercase letter</div>
+                                        <div class="req-item unmet" id="reqDigit"><span class="req-icon">○</span> Number (0-9)</div>
+                                        <div class="req-item unmet" id="reqSpecial"><span class="req-icon">○</span> Special character</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 6. Confirm Password -->
+                            <div class="form-group">
+                                <label for="confirmPassword" class="form-label">
+                                    Confirm Password <span class="required-badge">*</span>
+                                </label>
+                                <input type="password" id="confirmPassword" name="confirm_password" class="form-control" 
+                                       placeholder="Re-enter password" required autocomplete="new-password">
+                                <span class="field-error" id="confirmError"></span>
+                            </div>
+
+                            <!-- 7. Profile Picture / Document Upload -->
+                            <div class="form-group full-width">
+                                <label for="profilePic" class="form-label">
+                                    Profile Photograph
+                                </label>
+                                <div class="upload-dropzone" onclick="document.getElementById('profilePic').click();">
+                                    <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                    </svg>
+                                    <span style="font-weight: 500; font-size: 0.95rem;">Click or drag to upload candidate photograph</span>
+                                    <span id="fileInfoText" class="file-info-text">JPEG, PNG, or WebP up to 2MB (Optional)</span>
+                                    
+                                    <div class="upload-preview-container">
+                                        <img id="previewThumb" class="preview-thumb" alt="Profile preview thumbnail">
+                                    </div>
+                                </div>
+                                <input type="file" id="profilePic" name="profile_pic" accept="image/jpeg,image/png,image/webp" style="display: none;">
+                                <span class="field-error" id="fileError"></span>
+                            </div>
+
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="form-actions">
+                            <button type="submit" id="submitBtn" class="btn-submit">
+                                <span id="btnSpinner" class="btn-spinner"></span>
+                                <span id="btnText">Complete Registration</span>
+                            </button>
+                            <p class="form-footer-note">
+                                Already registered? Contact the administrator or log in through the 
+                                <a href="../php-admin/login.php">Admin Panel</a>.
+                            </p>
+                        </div>
+
+                    </form>
+                </div>
+
+                <!-- Success Confirmation Screen (Prevents blank page) -->
+                <div id="successScreen" class="success-screen">
+                    <div class="success-icon-wrap">&#10003;</div>
+                    <h3>Registration Submitted Successfully!</h3>
+                    <p style="color: #64748b; font-size: 0.95rem;">
+                        Your admission application has been registered in the institution database.
+                    </p>
+
+                    <div class="success-details">
+                        <dl>
+                            <dt>Roll Number:</dt>
+                            <dd id="resRoll">-</dd>
+                            <dt>Candidate Name:</dt>
+                            <dd id="resName">-</dd>
+                            <dt>Email Address:</dt>
+                            <dd id="resEmail">-</dd>
+                            <dt>Degree Program:</dt>
+                            <dd id="resCourse">-</dd>
+                            <dt>Registered On:</dt>
+                            <dd id="resDate">-</dd>
+                        </dl>
+                    </div>
+
+                    <div class="success-buttons">
+                        <button type="button" id="registerAnotherBtn" class="btn-secondary">Register Another Student</button>
+                        <a href="../php-admin/login.php" class="btn-primary">Go to Admin Login</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="portal-footer">
+        <p>&copy; 2026 Student Admission Portal &bull; Web Technology Assignment CO3, CO4, CO5</p>
+    </footer>
+
+    <!-- Client-side Validation Script -->
+    <script src="js/validation.js"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+# Disable PHP execution in uploads directory for defense-in-depth security
+<FilesMatch "(?i)\.(php|phtml|php3|php4|php5|php7|phps|phar|exe|bat|sh|cmd)$">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
+
+# Prevent script execution
+Options -ExecCGI -Indexes
+RemoveHandler .php .phtml .php3 .php4 .php5 .php7 .phar
+RemoveType .php .phtml .php3 .php4 .php5 .php7 .phar
